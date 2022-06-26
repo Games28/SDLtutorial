@@ -9,6 +9,9 @@
 EntityManager manager;
 AssetManager* Game::assetManager = new AssetManager(&manager);
 SDL_Renderer* Game::renderer;
+SDL_Surface* Game::screenSurface;
+SDL_Window* Game::window;
+
 Game::Game()
 {
 	this->isRunning = false;
@@ -23,7 +26,7 @@ Game::~Game()
 void Game::LoadLevel(int levelNumber)
 {
 	// include new  assets to assetmanager
-	std::string textureFilePath = "./assets/images/tank-big-right.png";
+	std::string textureFilePath = "tanks.png";
 	assetManager->AddTexture("tank-image", textureFilePath.c_str());
 
 
@@ -69,6 +72,17 @@ void Game::Initialize(int width, int height)
 	{
 		std::cerr << "error creating sdl renderer." << std::endl;
 		return;
+	}
+
+	int imgFlags = IMG_INIT_PNG;
+	if (!(IMG_Init(imgFlags) & imgFlags))
+	{
+		printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+		return;
+	}
+	else
+	{
+		screenSurface = SDL_GetWindowSurface(window);
 	}
 
 	LoadLevel(0);

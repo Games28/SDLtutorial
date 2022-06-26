@@ -1,12 +1,13 @@
 #include "AssetManager.h"
 #include "TransformComponent.h"
 
-
-AssetManager::AssetManager(EntityManager* manager) : manager(manager)
+AssetManager::AssetManager(EntityManager* manager)
 {
 }
 
-
+AssetManager::~AssetManager()
+{
+}
 
 void AssetManager::ClearData()
 {
