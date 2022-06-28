@@ -26,7 +26,7 @@ Game::~Game()
 void Game::LoadLevel(int levelNumber)
 {
 	// include new  assets to assetmanager
-	std::string textureFilePath = "tanks.png";
+	std::string textureFilePath = "./assets/images/tank-big-right.bmp";
 	assetManager->AddTexture("tank-image", textureFilePath.c_str());
 
 
@@ -73,18 +73,21 @@ void Game::Initialize(int width, int height)
 		std::cerr << "error creating sdl renderer." << std::endl;
 		return;
 	}
-
-	int imgFlags = IMG_INIT_PNG;
-	if (!(IMG_Init(imgFlags) & imgFlags))
-	{
-		printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
-		return;
-	}
-	else
-	{
-		screenSurface = SDL_GetWindowSurface(window);
-	}
-
+	
+	//SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+	//
+	//if (IMG_Init(IMG_INIT_PNG) != IMG_INIT_PNG) {
+	//
+	//	printf("Failed to init sdl_image");
+	//	return;
+	//}
+	//int imgFlags = IMG_INIT_PNG;
+	//if (!(IMG_Init(imgFlags) & imgFlags))
+	//{
+	//	printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+	//	return;
+	//}
+	
 	LoadLevel(0);
 
 	isRunning = true;
