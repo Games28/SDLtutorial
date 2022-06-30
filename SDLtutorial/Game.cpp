@@ -22,18 +22,27 @@ Game::~Game()
 {
 
 }
-
+ 
 void Game::LoadLevel(int levelNumber)
 {
 	// include new  assets to assetmanager
-	std::string textureFilePath = "./assets/images/tank-big-right.bmp";
-	assetManager->AddTexture("tank-image", textureFilePath.c_str());
-
+	
+	assetManager->AddTexture("tank-image", std::string("./assets/images/tank-big-right.png").c_str());
+	assetManager->AddTexture("chopper-image", std::string("./assets/images/chopper-spritesheet.png").c_str());
+	assetManager->AddTexture("radar-image", std::string("./assets/images/radar.png").c_str());
 
 	//include entities and components
-Entity& newEntity(manager.AddEntity("tank"));
-    newEntity.AddComponent<TransformComponent>(vi2d{ 0,0 }, vi2d{ 20,20 }, 32, 32, 1);
-	newEntity.AddComponent<SpriteComponent>("tank-image");
+Entity& tankEntity(manager.AddEntity("tank"));
+    tankEntity.AddComponent<TransformComponent>(vi2d{ 0,0 }, vi2d{ 20,20 }, 32, 32, 1);
+	tankEntity.AddComponent<SpriteComponent>("tank-image");
+
+	Entity& chopperEntity(manager.AddEntity("chopper"));
+	chopperEntity.AddComponent<TransformComponent>(vi2d{ 240, 105 }, vi2d{ 0, 0 }, 32, 32, 1);
+	chopperEntity.AddComponent<SpriteComponent>("chopper-image", 2,90, true, false);
+
+	Entity& raderEntity(manager.AddEntity("Radar"));
+	raderEntity.AddComponent<TransformComponent>(vi2d{ 720,15 }, vi2d{ 0,0 }, 64, 64, 1);
+	raderEntity.AddComponent<SpriteComponent>("radar-image", 8, 150, false, true);
 }
 
 bool Game::IsRunning() const
@@ -74,24 +83,19 @@ void Game::Initialize(int width, int height)
 		return;
 	}
 	
-	//SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-	//
-	//if (IMG_Init(IMG_INIT_PNG) != IMG_INIT_PNG) {
-	//
-	//	printf("Failed to init sdl_image");
-	//	return;
-	//}
-	//int imgFlags = IMG_INIT_PNG;
-	//if (!(IMG_Init(imgFlags) & imgFlags))
-	//{
-	//	printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
-	//	return;
-	//}
+	
+
+	int imgFlags = IMG_INIT_PNG;
+	if (!(IMG_Init(imgFlags) & imgFlags))
+	{
+		printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+		return;
+	}
 	
 	LoadLevel(0);
 
 	isRunning = true;
-	return;
+	return; 
 
 }
 
