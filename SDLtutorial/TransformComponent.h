@@ -16,7 +16,7 @@ public:
 	int width;
 	int height;
 	int scale;
-
+	
 	TransformComponent(vi2d pos, vi2d vel, int w, int h, int s)
 	{
 		position = pos;

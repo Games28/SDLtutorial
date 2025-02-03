@@ -11,6 +11,7 @@
 
 
 
+
 class AssetManager;
 
 
@@ -23,6 +24,7 @@ public:
 	static AssetManager* assetManager;
 	static SDL_Window* window;
 	static SDL_Surface* screenSurface;
+	static SDL_Event event;
 	void LoadLevel(int levelNumber);
 	bool IsRunning() const;
 	void Initialize(int width, int height);

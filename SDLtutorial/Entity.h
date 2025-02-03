@@ -40,6 +40,8 @@ public:
 	T* GetComponent() {
 		return static_cast<T*>(componentTypeMap[&typeid(T)]);
 	}
+
+
 private:
 	EntityManager& Manager;
 	bool isActive;
