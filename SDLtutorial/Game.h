@@ -25,6 +25,7 @@ public:
 	static SDL_Window* window;
 	static SDL_Surface* screenSurface;
 	static SDL_Event event;
+	static SDL_Rect camera;
 	void LoadLevel(int levelNumber);
 	bool IsRunning() const;
 	void Initialize(int width, int height);
@@ -32,6 +33,10 @@ public:
 	void Update();
 	void Render();
 	void Destroy();
+	void HandleCameraMovement();
+	void CheckCollisions();
+	void ProcessNextLevel(int levelNumber);
+	void ProcessGameOver();
 	int ticksLastFrame;
 	
 private:

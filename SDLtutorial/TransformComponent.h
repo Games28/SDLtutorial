@@ -1,5 +1,5 @@
 
-#ifndef TRANSFROMCOMPONENT_H
+#ifndef TRANSFORMCOMPONENT_H
 #define TRANSFORMCOMPONENT_H
 
 #include <SDL.h>

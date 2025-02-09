@@ -89,8 +89,8 @@ public:
 			sourceRect.x = sourceRect.w * static_cast<int>((SDL_GetTicks() / animationSpeed) % numFrames);
 		}
 		sourceRect.y = animatonIndex * transform->height;
-		destinationRect.x = static_cast<int>(transform->position.x);
-		destinationRect.y = static_cast<int>(transform->position.y);
+		destinationRect.x = static_cast<int>(transform->position.x) - (isFixed ? 0 : Game::camera.x);
+		destinationRect.y = static_cast<int>(transform->position.y) - (isFixed ? 0 : Game::camera.y);
 		destinationRect.w = transform->width * transform->scale;
 		destinationRect.h = transform->height * transform->scale;
 
@@ -99,6 +99,11 @@ public:
 	void Render() override
 	{
 		TextureManager::Draw(texture, sourceRect, destinationRect, spriteFlip);
+	}
+
+	void SetAnimation(bool set)
+	{
+		isAnimated = set;
 	}
 
 private:
